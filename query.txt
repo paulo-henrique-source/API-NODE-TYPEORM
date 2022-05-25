@@ -1,0 +1,61 @@
+CREATE TABLE public.usuario
+(
+    codusuario             integer   NOT NULL, -- não permite que a chave primária seja nula
+    nome_usuario           character varying(100),
+    imagem_usuario         character varying(200),
+    situacao_usuario       smallint,
+	cpf_usuario            character varying(100),
+	sexo_usuario           boolean,
+	data_nacimento_usuario integer,
+	data_cadastro_usuario  integer, 
+	email_usuario          character varying(100), 
+	
+	CONSTRAINT keycodusuario PRIMARY KEY (codusuario) -- definição de chave primária
+);
+
+CREATE TABLE public.loja
+(
+    codloja            integer                 NOT NULL,
+    razaosocial_loja   character varying(200),                 
+    nome_loja       character varying(200),
+    cnpj_loja          character varying(200),
+    CONSTRAINT keycodloja PRIMARY KEY (codloja)
+  
+);
+
+CREATE TABLE public.avaliacao
+(
+    codavaliacao         integer        NOT NULL,
+    nota_avaliacao       numeric,
+    codusuario           integer,
+	codloja              integer,  
+              
+    CONSTRAINT keycodavaliacao PRIMARY KEY (codavaliacao),
+	CONSTRAINT keyusuario_avaliacao FOREIGN KEY (codusuario) -- definição de chave estrangeira
+	  REFERENCES public.usuario(codusuario) MATCH SIMPLE
+	   ON UPDATE CASCADE
+       ON DELETE RESTRICT,
+	CONSTRAINT keyloja_avaliacao FOREIGN KEY (codloja) -- definição de chave estrangeira
+	  REFERENCES public.loja(codloja) MATCH SIMPLE
+	   ON UPDATE CASCADE
+       ON DELETE RESTRICT
+);
+
+
+
+CREATE TABLE public.preferencia
+(
+    codprefencia         integer               NOT NULL,
+    codusuario           integer,
+	codloja              integer,  
+               
+    CONSTRAINT keycodpreferencia PRIMARY KEY (codprefencia),
+	CONSTRAINT keyusuario_preferencia FOREIGN KEY (codusuario) -- definição de chave estrangeira
+	  REFERENCES public.usuario(codusuario) MATCH SIMPLE
+	   ON UPDATE CASCADE
+       ON DELETE RESTRICT,
+	CONSTRAINT keyloja_preferencia FOREIGN KEY (codloja) -- definição de chave estrangeira
+	  REFERENCES public.loja(codloja) MATCH SIMPLE
+	   ON UPDATE CASCADE
+       ON DELETE RESTRICT
+);
