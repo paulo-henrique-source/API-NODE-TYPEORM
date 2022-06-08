@@ -16,7 +16,6 @@ CREATE TABLE public.usuario
 CREATE TABLE public.loja
 (
     codloja            integer                 NOT NULL,
-    razaosocial_loja   character varying(200),                 
     nome_loja       character varying(200),
     cnpj_loja          character varying(200),
     CONSTRAINT keycodloja PRIMARY KEY (codloja)
