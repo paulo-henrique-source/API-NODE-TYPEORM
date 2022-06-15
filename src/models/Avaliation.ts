@@ -5,27 +5,23 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-// codloja            integer                 NOT NULL,
-// nome_loja       character varying(200),
-// cnpj_loja          character varying(200),
-// CONSTRAINT keycodloja PRIMARY KEY (codloja)
+
 @Entity('avaliation')
 class Avaliation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  score: string;
+  score: number;
 
   @Column({
     unique: true,
   })
-  cnpj_loja: string;
-
-  @CreateDateColumn()
   user_id: string;
 
-  @UpdateDateColumn()
+  @Column({
+    unique: true,
+  })
   store_id: string;
 
   @CreateDateColumn()

@@ -6,6 +6,7 @@
     "password": "123",
     "database": "project_manager",
     "keepConnectionAlive":true,
+    "migrationsRun": true,
     "entities": [
       "./src/models/*.ts"
     ],

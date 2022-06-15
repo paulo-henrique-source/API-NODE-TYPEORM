@@ -1,18 +1,13 @@
 import 'reflect-metadata';
-import './config/env';
-import 'express-async-errors';
-import cors from 'cors';
-import { resolve } from 'path';
-
-import express, { Request, Response, NextFunction, response } from 'express';
-import './database';
+import express from 'express';
+import routes from './routes';
+import { createConnection } from 'typeorm';
 
 const app = express();
 
 app.use(express.json());
+app.use(routes);
 
-app.get('/', (request, response) => response.json({
-    message: 'Hello Code '
-}))
-
-app.listen(3333);
+createConnection().then(connection => {
+  app.listen(3333);
+});

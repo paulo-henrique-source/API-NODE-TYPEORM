@@ -5,10 +5,7 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-// codloja            integer                 NOT NULL,
-// nome_loja       character varying(200),
-// cnpj_loja          character varying(200),
-// CONSTRAINT keycodloja PRIMARY KEY (codloja)
+
 @Entity('store')
 class Store {
   @PrimaryGeneratedColumn('uuid')

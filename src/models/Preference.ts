@@ -5,19 +5,19 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
-// codloja            integer                 NOT NULL,
-// nome_loja       character varying(200),
-// cnpj_loja          character varying(200),
-// CONSTRAINT keycodloja PRIMARY KEY (codloja)
 @Entity('preference')
 class Preference {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @CreateDateColumn()
+  @Column({
+    unique: true,
+  })
   user_id: string;
 
-  @UpdateDateColumn()
+  @Column({
+    unique: true,
+  })
   store_id: string;
 
   @CreateDateColumn()
